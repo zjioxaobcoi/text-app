@@ -1,0 +1,17 @@
+import"./modulepreload-polyfill-B5Qt9EMX.js";function g({url:i,method:t="get",data:e={}}){return new Promise((o,r)=>{const l=new XMLHttpRequest;if(t.toUpperCase()==="GET"){let[d,n=""]=i.split("?");n=n.length>0?n+"&":n,Object.entries(e).forEach(m=>{const[f,h]=m;n+=`${f}=${h}&`}),n=n.slice(0,n.length-1),i=n.length>0?`${d}?${n}`:d}l.open(t,i),l.onreadystatechange=()=>{if(l.readyState===4)if(l.status===200){const d=JSON.parse(l.responseText);o(d)}else r(l.status)},t.toUpperCase()==="POST"?(l.setRequestHeader("Content-Type","application/json;charset=utf-8"),l.send(JSON.stringify(e))):l.send()})}let a={};s("ul",s(".main-top")).addEventListener("click",i=>{const t=i.target||window.event.srcElement;if(t.nodeName==="LI"&&(s(".active").classList.remove("active"),t.classList.add("active")),t.classList.contains("shopTotal")&&p().then(e=>{c(a)}),t.classList.contains("sales")&&x().then(e=>{c(a)}),t.classList.contains("comNew")&&b().then(e=>{c(a)}),t.classList.contains("sort")){let e=a;if(console.log(s(".sort").nextElementSibling.firstElementChild),s(".sort").nextElementSibling.firstElementChild.classList.contains("bg")){console.log(111),s(".bg")&&s(".bg").classList.remove("bg"),s(".sort").nextElementSibling.lastElementChild.classList.add("bg"),e=a.items.toSorted((o,r)=>r.price-o.price),c(e);return}if(s(".sort").nextElementSibling.lastElementChild.classList.contains("bg")){s(".bg").classList.remove("bg"),c(e);return}s(".sort").nextElementSibling.firstElementChild.classList.add("bg"),e=a.items.toSorted((o,r)=>o.price-r.price),c(e)}t.classList.contains("change")&&(s(".change img").src==="https://img.ixintu.com/download/jpg/202007/703c30aa700c7ad78f9fb2b656c88822_610_556.jpg!bg"?s(".change img").src="https://img.ixintu.com/download/jpg/202008/f8462833318250e666a757f65eaedb23_610_610.jpg!bg":s(".change img").src="https://img.ixintu.com/download/jpg/202007/703c30aa700c7ad78f9fb2b656c88822_610_556.jpg!bg",c(a))});document.addEventListener("click",i=>{const t=i.target||window.event.srcElement;t.nodeName==="DL"&&(localStorage.setItem("itemInfo",t.getAttribute("data_id")),location.assign("./detail.html"))});p().then(i=>{c(a)});async function p(){a=await g({url:"https://zyxcl.xyz/exam_api/zh"}),localStorage.setItem("itemOrigin","https://zyxcl.xyz/exam_api/zh")}async function x(){a=await g({url:"https://zyxcl.xyz/exam_api/xl"}),localStorage.setItem("itemOrigin","https://zyxcl.xyz/exam_api/xl")}async function b(){a=await g({url:"https://zyxcl.xyz/exam_api/sx"}),localStorage.setItem("itemOrigin","https://zyxcl.xyz/exam_api/sx")}function c(i){let t;Array.isArray(i)?t=i:t=i.items,s(".change").innerHTML==='<img src="https://img.ixintu.com/download/jpg/202007/703c30aa700c7ad78f9fb2b656c88822_610_556.jpg!bg" alt="">'?s(".con").innerHTML='<div class="scroll">'+t.map(e=>` <dl data_id =${e.item_id}>
+        <dt><img src="${e.img}" alt=""></dt>
+        <dd class="dd-h">${e.title}</dd>
+        <dd class="dd-m">月销<b class="num">${e.sold}</b>笔</dd>
+        <dd class="dd-p">￥<span class="price">${e.price}</span></dd>
+      </dl>`).join("")+"<scroll>":s(".con").innerHTML="<ul>"+t.map((e,o)=>`
+       <li class="item" data-index="${o}">
+           <div class="left">
+               <img src="${e.img}" alt="">
+           </div>
+           <div class="right">
+               <p class="dd-h">${e.title}</p>
+               <p class="dd-m">月销<b class="num">${e.sold}</b>笔</p>
+               <p class="dd-p">￥<span class="price">${e.price}</span></p>
+           </div>
+       
+   `).join("")+"</ul>"}function s(i,t){return t=t||document,t.querySelector(i)}
